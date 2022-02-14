@@ -1,33 +1,38 @@
 package com.wdretzer.doctordigital
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.wdretzer.doctordigital.network.DataResult
+import com.wdretzer.doctordigital.viewmodel.LoginViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [LoginScreen_01.newInstance] factory method to
- * create an instance of this fragment.
- */
 class LoginScreen_01 : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val viewModel: LoginViewModel by viewModels()
+
+    private val progress_bar: ProgressBar?
+        get() = view?.findViewById(R.id.progress_bar)
+
+    private val btn_login: Button?
+        get() = view?.findViewById(R.id.btn_login)
+
+    private val btn_forgot_password: TextView?
+        get() = view?.findViewById(R.id.btn_forgot_password)
+
+    private val btn_new_account: TextView?
+        get() = view?.findViewById(R.id.btn_new_account)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,25 +40,65 @@ class LoginScreen_01 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login_screen_01, container, false)
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LoginScreen_01.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LoginScreen_01().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val dialog = ForgotPasswordDialogFragment()
+
+        progress_bar?.isVisible = false
+
+        btn_login?.setOnClickListener {
+            login("teste@teste.com", "password")
+        }
+
+        btn_forgot_password?.setOnClickListener {
+            dialog.show(
+                parentFragmentManager,
+                ForgotPasswordDialogFragment.TAG
+            )
+        }
+
+        btn_new_account?.setOnClickListener {
+            sendToLogin02()
+        }
+    }
+
+    @SuppressLint("FragmentLiveDataObserve")
+    private fun login(email: String, password: String) {
+
+        val dialog3 = PasswordCorrectDialogFragment()
+        val dialog4 = PasswordIncorrectDialogFragment()
+
+        viewModel.login(email, password).observe(this) {
+            when (it) {
+                is DataResult.Loading -> {
+                    showLoading(true)
+                }
+                is DataResult.Success -> {
+                    showLoading(false)
+                    //Toast.makeText(context, "Fez Login -> ${it.data}", Toast.LENGTH_LONG).show()
+                    dialog3.show(parentFragmentManager, PasswordCorrectDialogFragment.TAG)
+                }
+                is DataResult.Error -> {
+                    showLoading(false)
+                    //Toast.makeText(context, "Deu Erro", Toast.LENGTH_LONG).show()
+                    dialog4.show(parentFragmentManager, PasswordIncorrectDialogFragment.TAG)
                 }
             }
+        }
     }
+
+    private fun showLoading(isInProgress: Boolean) {
+        progress_bar?.isVisible = isInProgress
+    }
+
+    private fun sendToLogin02() {
+        val action =
+            LoginScreen_01Directions.actionLoginScreen01ToLoginScreen02()
+        findNavController().navigate(action)
+    }
+
 }

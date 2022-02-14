@@ -1,11 +1,11 @@
 package com.wdretzer.doctordigital
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+
 
 class ForgotPasswordDialogFragment : BottomSheetDialogFragment() {
 
@@ -18,7 +18,7 @@ class ForgotPasswordDialogFragment : BottomSheetDialogFragment() {
 
     }
 
-    companion object{
+    companion object {
         const val TAG = "ForgotPasswordDialog"
     }
 }

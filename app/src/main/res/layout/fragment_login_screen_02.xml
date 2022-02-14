@@ -123,7 +123,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="number" />
+            android:inputType="numberPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,7 +156,7 @@
         android:layout_height="54dp"
         android:layout_marginBottom="80dp"
         android:background="@drawable/button_background"
-        android:text="Login"
+        android:text="Sign up"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -180,5 +180,6 @@
         android:src="@drawable/elipse_background_green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

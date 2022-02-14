@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navegation"
+    app:startDestination="@id/loginScreen_01">
+    <fragment
+        android:id="@+id/loginScreen_01"
+        android:name="com.wdretzer.doctordigital.LoginScreen_01"
+        android:label="fragment_login_screen_01"
+        tools:layout="@layout/fragment_login_screen_01" >
+        <action
+            android:id="@+id/action_loginScreen_01_to_loginScreen_02"
+            app:destination="@id/loginScreen_02" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginScreen_02"
+        android:name="com.wdretzer.doctordigital.LoginScreen_02"
+        android:label="fragment_login_screen_02"
+        tools:layout="@layout/fragment_login_screen_02" />
+</navigation>
