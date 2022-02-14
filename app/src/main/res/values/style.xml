@@ -9,5 +9,7 @@
         <item name="android:background">@drawable/background_dialog</item>
     </style>
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
+
 
 </resources>

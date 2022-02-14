@@ -14,4 +14,10 @@
     <string name="forgot_password_description">Enter your email for the verification proccesss, we will send 4 digits code to your email.</string>
     <string name="resete_password">Resete Password</string>
     <string name="reset_password_description">Set the new password for your account so you can login and access all the features.</string>
+    <string name="find_trusted_doctors">Find Trusted Doctors</string>
+    <string name="description_screen01">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of it over 2000 years old.</string>
+    <string name="choose_best_doctors">Choose Best Doctors</string>
+    <string name="next">Next</string>
+    <string name="easy_appointments">Easy Appointments</string>
+    <string name="get_start">Get Start</string>
 </resources>

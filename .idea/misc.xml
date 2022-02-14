@@ -12,10 +12,16 @@
         <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_forgot_password_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_login_screen02.xml" value="0.25416666666666665" />
-        <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_login_screen_01.xml" value="0.264" />
+        <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_login_screen_01.xml" value="0.2210144927536232" />
         <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_login_screen_02.xml" value="0.25416666666666665" />
+        <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_onboarding_screen01.xml" value="0.25416666666666665" />
+        <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_onboarding_screen02.xml" value="0.25416666666666665" />
+        <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_onboarding_screen03.xml" value="0.25416666666666665" />
+        <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_password_correct_dialog.xml" value="0.264" />
+        <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_password_incorrect_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_reset_passwor_dialog.xml" value="0.25416666666666665" />
-        <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_reset_password_dialog.xml" value="0.1" />
+        <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_reset_password_dialog.xml" value="0.4" />
+        <entry key="..\:/Docs_Area/AndroidStudio/DoctorDigital/app/src/main/res/layout/fragment_splash_screen.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
