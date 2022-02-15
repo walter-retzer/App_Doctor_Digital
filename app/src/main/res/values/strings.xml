@@ -20,4 +20,8 @@
     <string name="next">Next</string>
     <string name="easy_appointments">Easy Appointments</string>
     <string name="get_start">Get Start</string>
+    <string name="cont">Continue</string>
+    <string name="set_up_your_profile">Set up your profile</string>
+    <string name="description_profile">Update your profile to connect your doctor with better impression.</string>
+    <string name="personal_information">Personal information</string>
 </resources>
