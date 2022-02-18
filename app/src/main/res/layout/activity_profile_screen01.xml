@@ -104,6 +104,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_personal_information">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textPersonName" />
@@ -128,6 +129,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_name">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="phone" />
@@ -143,7 +145,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:background="@color/white"
-        android:hint="Date of Birthday"
+        android:hint="Date of Birth"
         android:textColorHint="@color/cinza_chumbo"
         app:endIconDrawable="@drawable/icon_edit"
         app:endIconMode="custom"
@@ -152,6 +154,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_number">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_day_birth"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="date" />
@@ -174,12 +177,12 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_birthday">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_localization"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textPostalAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_onboarding"
@@ -200,5 +203,22 @@
         android:src="@drawable/elipse_background_green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:visibility="gone"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

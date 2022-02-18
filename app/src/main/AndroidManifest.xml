@@ -3,6 +3,7 @@
     package="com.wdretzer.doctordigital">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,22 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoctorDigital">
         <activity
+            android:name=".App"
+            android:exported="true" />
+        <activity
             android:name=".Profile_Screen01"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
             android:exported="true" />
-        <activity
-            android:name=".MainActivity2"
-            android:exported="true" />
+
         <activity
             android:name=".OnboardingActivity"
             android:exported="true" />
+
         <activity
-            android:name=".SplashScreenActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SplashScreen"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
