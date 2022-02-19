@@ -43,15 +43,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_title_profile" />
 
-    <ImageView
-        android:id="@+id/profile_imagem"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_profile_imagem"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginBottom="30dp"
-        android:src="@drawable/imagem_profile"
+        android:elevation="0dp"
+        app:cardCornerRadius="130dp"
         app:layout_constraintBottom_toBottomOf="@id/view_top"
         app:layout_constraintLeft_toLeftOf="@id/view_top"
-        app:layout_constraintRight_toRightOf="@id/view_top" />
+        app:layout_constraintRight_toRightOf="@id/view_top">
+
+        <ImageView
+            android:id="@+id/profile_imagem"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/icon_acount"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@id/view_top"
+            app:layout_constraintLeft_toLeftOf="@id/view_top"
+            app:layout_constraintRight_toRightOf="@id/view_top" />
+
+    </androidx.cardview.widget.CardView>
 
     <ImageView
         android:id="@+id/background_icon_camera"
@@ -60,8 +74,9 @@
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="13dp"
         android:src="@drawable/icone_camera"
-        app:layout_constraintBottom_toBottomOf="@id/profile_imagem"
-        app:layout_constraintStart_toStartOf="@id/profile_imagem" />
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="@id/card_profile_imagem"
+        app:layout_constraintStart_toStartOf="@id/card_profile_imagem" />
 
     <ImageView
         android:id="@+id/icon_camera"
@@ -208,16 +223,17 @@
         android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:padding="16dp"
         android:visibility="gone"
-        android:background="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ProgressBar
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </FrameLayout>
 
 

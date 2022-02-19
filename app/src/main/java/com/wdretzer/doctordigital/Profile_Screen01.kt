@@ -55,16 +55,17 @@ class Profile_Screen01 : AppCompatActivity(R.layout.activity_profile_screen01) {
 
         viewModel.profile.observe(this) {
 
+            Glide.with(this)
+                .load("${it.picture.large}")
+                .placeholder(R.drawable.icon_acount)
+                .error(R.drawable.icon_error)
+                .circleCrop()
+                .into(profile_image)
+
             name.setText(it.name.first)
             phone.setText(it.phone)
             dateBirth.setText(it.dob.date)
             localization.setText(it.location.city)
-
-            Glide.with(this)
-                .load("${it.picture.large}")
-                .error(R.drawable.imagem_error)
-                .circleCrop()
-                .into(profile_image)
 
             Toast.makeText(this, "Deu certo!", Toast.LENGTH_LONG).show()
 
