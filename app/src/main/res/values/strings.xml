@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">DoctorDigital</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="google">Google</string>
+    <string name="facebook">Facebook</string>
+    <string name="msg_welcome">You can search c ourse, apply course and find scholarship for abroad studies</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="don_t_have_an_account_join_us">Don’t have an account? Join us</string>
+    <string name="join_us_to_start_searching">Join us to start searching</string>
+    <string name="have_an_account_log_in">Have an account? Log in</string>
+    <string name="i_agree_with_the_terms_of_service_privacy_policy"><![CDATA[I agree with the Terms of Service & Privacy Policy]]></string>
+    <string name="forgot_password_description">Enter your email for the verification proccesss, we will send 4 digits code to your email.</string>
+    <string name="resete_password">Resete Password</string>
+    <string name="reset_password_description">Set the new password for your account so you can login and access all the features.</string>
+    <string name="find_trusted_doctors">Find Trusted Doctors</string>
+    <string name="description_screen01">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of it over 2000 years old.</string>
+    <string name="choose_best_doctors">Choose Best Doctors</string>
+    <string name="next">Next</string>
+    <string name="easy_appointments">Easy Appointments</string>
+    <string name="get_start">Get Start</string>
+    <string name="cont">Continue</string>
+    <string name="set_up_your_profile">Set up your profile</string>
+    <string name="description_profile">Update your profile to connect your doctor with better impression.</string>
+    <string name="personal_information">Personal information</string>
+</resources>
