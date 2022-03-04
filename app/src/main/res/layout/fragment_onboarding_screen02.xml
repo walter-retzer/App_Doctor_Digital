@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OnboardingScreen02Fragment">
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="290dp"
+        android:src="@drawable/elipse_full_green_right"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imagem_screen_01"
+        android:layout_width="336dp"
+        android:layout_height="336dp"
+        android:layout_marginTop="61dp"
+        android:src="@drawable/imagem_screen_02"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_screen01"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:text="@string/choose_best_doctors"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagem_screen_01" />
+
+    <TextView
+        android:id="@+id/description_title_screen01"
+        android:layout_width="289dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="11dp"
+        android:text="@string/description_screen01"
+        android:textAlignment="center"
+        android:textColor="@color/cinza"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_screen01" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
