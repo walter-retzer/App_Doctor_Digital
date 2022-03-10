@@ -2,7 +2,6 @@ package com.wdretzer.doctordigital.repository
 
 
 import com.wdretzer.doctordigital.data.Api
-import com.wdretzer.doctordigital.data.DoctorsList
 import com.wdretzer.doctordigital.data.LoginRequest
 import com.wdretzer.doctordigital.data.LoginResponse
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +16,7 @@ class ApiRepository(private val api: Api = Api.api) {
         kotlinx.coroutines.delay(5000L)
     }.flowOn(Dispatchers.IO)
 
-    companion object{
+    companion object {
         val instance: ApiRepository by lazy { ApiRepository() }
     }
 }

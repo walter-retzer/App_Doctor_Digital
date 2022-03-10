@@ -36,5 +36,4 @@ class ApiViewModel(private val repository: ApiRepository = ApiRepository.instanc
                 _loading.postValue(false)
             }
     }
-
 }

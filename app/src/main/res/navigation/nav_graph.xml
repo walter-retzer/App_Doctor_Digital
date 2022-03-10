@@ -6,7 +6,7 @@
     app:startDestination="@id/loginScreen_01">
     <fragment
         android:id="@+id/loginScreen_01"
-        android:name="com.wdretzer.doctordigital.LoginScreen_01"
+        android:name="com.wdretzer.doctordigital.ui.LoginScreen_01"
         android:label="fragment_login_screen_01"
         tools:layout="@layout/fragment_login_screen_01" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginScreen_02"
-        android:name="com.wdretzer.doctordigital.LoginScreen_02"
+        android:name="com.wdretzer.doctordigital.ui.LoginScreen_02"
         android:label="fragment_login_screen_02"
         tools:layout="@layout/fragment_login_screen_02" />
 </navigation>

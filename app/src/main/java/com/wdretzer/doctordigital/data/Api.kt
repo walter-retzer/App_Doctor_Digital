@@ -8,13 +8,18 @@ interface Api {
 
     @GET("doctor")
     suspend fun doctors(
-        @Header("Authorization") authorization: String
-    ): List<DoctorsList>
+        @Header("Content-Type") content: String = "application/json",
+        @Header("Authorization") authorization: String,
+    ): DoctorsResponse
 
     companion object {
         val api: Api by lazy {
             RetrofitFactory
-                .build()
+                .build(
+                    "Doctor",
+                    Okhttp.build(),
+                    GsonFactory.build()
+                )
                 .create(Api::class.java)
         }
     }
@@ -24,11 +29,13 @@ data class LoginRequest(val email: String, val password: String)
 
 data class LoginResponse(val token: String)
 
+data class DoctorsResponse(val doctors: List<DoctorsList>)
+
 data class DoctorsList(
     val id: String,
     val photo: String,
     val name: String,
     val specialization: String,
-    val classification: Float,
+    val classification: Double,
     val views: Int
 )

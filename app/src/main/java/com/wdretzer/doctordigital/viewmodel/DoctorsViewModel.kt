@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wdretzer.doctordigital.data.DoctorsList
+import com.wdretzer.doctordigital.data.DoctorsResponse
 import com.wdretzer.doctordigital.repository.ApiDoctorRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -17,8 +17,8 @@ class DoctorsViewModel (private val repository: ApiDoctorRepository = ApiDoctorR
     private val _error: MutableLiveData<Boolean> = MutableLiveData(false)
     val error: LiveData<Boolean> = _error
 
-    private val _success: MutableLiveData<List<DoctorsList>> = MutableLiveData()
-    val success: LiveData<List<DoctorsList>>
+    private val _success: MutableLiveData<DoctorsResponse> = MutableLiveData()
+    val success: LiveData<DoctorsResponse>
         get() = _success
 
     private val _loading = MutableLiveData(false)
@@ -33,7 +33,7 @@ class DoctorsViewModel (private val repository: ApiDoctorRepository = ApiDoctorR
             .catch { _error.value = true
                 _loading.postValue(false)}
             .collect {
-                _success.value = listOf(it.first())
+                _success.value = it
                 _loading.postValue(false)
             }
     }

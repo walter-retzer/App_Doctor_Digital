@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OnboardingScreen02Fragment">
+    tools:context=".ui.OnboardingScreen02Fragment">
 
     <ImageView
         android:layout_width="180dp"
@@ -49,6 +49,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_screen01" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

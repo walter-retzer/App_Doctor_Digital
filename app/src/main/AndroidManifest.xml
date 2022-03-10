@@ -13,22 +13,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoctorDigital">
         <activity
-            android:name=".FindDoctors"
+            android:name=".ui.ProfileLoginScreen"
             android:exported="true" />
         <activity
-            android:name=".App"
-            android:exported="true" />
-        <activity
-            android:name=".Profile_Screen01"
-            android:exported="true" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true" />
-        <activity
-            android:name=".OnboardingActivity"
+            android:name=".ui.FindDoctors"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.OnboardingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.App"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
