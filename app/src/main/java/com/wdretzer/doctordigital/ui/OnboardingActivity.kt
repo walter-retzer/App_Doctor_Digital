@@ -45,7 +45,7 @@ class OnboardingActivity : AppCompatActivity() {
 
         btn_onboarding.setOnClickListener {
             if (viewPager.currentItem == 2) {
-                startActivity(Intent(this, ProfileLoginScreen::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             } else {
                 viewPager.currentItem++

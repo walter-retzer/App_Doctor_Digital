@@ -1,7 +1,7 @@
 package com.wdretzer.doctordigital.model
 
-data class ProfileResponseLogin(val results: List<ProfileItemLogin>)
-data class ProfileItemLogin(
+data class ProfileResponseLogin(val results: List<ProfileItemLoginApi>)
+data class ProfileItemLoginApi(
     val name: ProfileName,
     val phone: String,
     val dob: ProfileRegister,

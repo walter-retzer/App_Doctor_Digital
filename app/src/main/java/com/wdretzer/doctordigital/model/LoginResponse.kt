@@ -1,6 +1,7 @@
 package com.wdretzer.doctordigital.model
 
-data class LoginResponse(val user: List<LoginUser>)
+data class LoginResponseUser(val user: LoginUser, val token: String)
+
 data class LoginUser(
     val name: String,
     val email: String,
@@ -9,5 +10,3 @@ data class LoginUser(
     val bday: String,
     val location: String
 )
-
-data class LoginToken(val token: String)

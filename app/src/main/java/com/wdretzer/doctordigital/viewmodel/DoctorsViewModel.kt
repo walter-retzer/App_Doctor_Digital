@@ -4,15 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wdretzer.doctordigital.data.DoctorsResponse
+import com.wdretzer.doctordigital.model.DoctorsResponse
 import com.wdretzer.doctordigital.repository.ApiDoctorRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
-class DoctorsViewModel (private val repository: ApiDoctorRepository = ApiDoctorRepository.instance) : ViewModel() {
+
+class DoctorsViewModel(private val repository: ApiDoctorRepository = ApiDoctorRepository.instance) :
+    ViewModel() {
 
     private val _error: MutableLiveData<Boolean> = MutableLiveData(false)
     val error: LiveData<Boolean> = _error
@@ -25,16 +28,17 @@ class DoctorsViewModel (private val repository: ApiDoctorRepository = ApiDoctorR
     val loading: LiveData<Boolean>
         get() = _loading
 
+    var limitPage = 0
 
-    fun listDoctors(token: String) = viewModelScope.launch(Dispatchers.Main){
+    fun listDoctors(pageNumber: Int) = viewModelScope.launch(Dispatchers.Main) {
         repository
-            .doctors(token)
+            .doctors(pageNumber)
             .onStart { _loading.postValue(true) }
-            .catch { _error.value = true
-                _loading.postValue(false)}
+            .catch { _error.value = true }
+            .onCompletion { _loading.postValue(false) }
             .collect {
                 _success.value = it
-                _loading.postValue(false)
+                limitPage = it.limit_page
             }
     }
 }

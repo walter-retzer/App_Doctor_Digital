@@ -14,12 +14,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.wdretzer.doctordigital.R
 import com.wdretzer.doctordigital.viewmodel.ApiViewModel
-import com.wdretzer.doctordigital.viewmodel.DoctorsViewModel
 
 
 class LoginScreen_01 : Fragment() {
 
-    var token: String? = null
+    var token:String? = null
 
     private val viewModelLogin: ApiViewModel by viewModels()
 
@@ -89,29 +88,23 @@ class LoginScreen_01 : Fragment() {
 
     @SuppressLint("FragmentLiveDataObserve")
     private fun observarApi() {
+
         viewModelLogin.error.observe(this) {
 
             if (it) {
-                btn_new_account?.text = text_password?.text.toString()
                 dialogError.show(parentFragmentManager, PasswordIncorrectDialogFragment.TAG)
             }
-
         }
+
         viewModelLogin.success.observe(this) {
             token = it
-            btn_new_account?.text = "Token: -> ${it}"
             dialogCorrect.show(parentFragmentManager, PasswordCorrectDialogFragment.TAG)
 
             Handler().postDelayed({
-                //getListDoctors(it)
-
-                val intent = Intent(context, FindDoctors::class.java)
-                intent.putExtra("token", token)
+                val intent = Intent(context, ProfileLoginScreen::class.java)
+                //intent.putExtra("token", token)
                 startActivity(intent)
-
-            }, 2000)
-
-
+            }, 200)
         }
     }
 

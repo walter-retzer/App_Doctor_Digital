@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wdretzer.doctordigital.model.ProfileResponseLogin
+import com.wdretzer.doctordigital.model.*
 import com.wdretzer.doctordigital.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -16,8 +16,8 @@ import kotlinx.coroutines.launch
 class ProfileLoginViewModel(private val repository: UserRepository = UserRepository.instance) :
     ViewModel() {
 
-    private val _profile = MutableLiveData<ProfileResponseLogin>()
-    val profile: LiveData<ProfileResponseLogin>
+    private val _profile = MutableLiveData<LoginUser>()
+    val profile: LiveData<LoginUser>
         get() = _profile
 
     private val _loading = MutableLiveData(false)

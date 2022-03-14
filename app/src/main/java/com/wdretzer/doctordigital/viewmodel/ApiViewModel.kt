@@ -25,12 +25,14 @@ class ApiViewModel(private val repository: ApiRepository = ApiRepository.instanc
     val loading: LiveData<Boolean>
         get() = _loading
 
-    fun login(email: String, password: String) = viewModelScope.launch(Dispatchers.Main){
+    fun login(email: String, password: String) = viewModelScope.launch(Dispatchers.Main) {
         repository
             .login(email, password)
             .onStart { _loading.postValue(true) }
-            .catch { _error.value = true
-                    _loading.postValue(false)}
+            .catch {
+                _error.value = true
+                _loading.postValue(false)
+            }
             .collect {
                 _success.value = it.token
                 _loading.postValue(false)

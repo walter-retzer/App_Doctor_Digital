@@ -11,7 +11,7 @@ import com.wdretzer.doctordigital.R
 import com.wdretzer.doctordigital.viewmodel.ProfileLoginViewModel
 
 
-class ProfileLoginScreen : AppCompatActivity(R.layout.activity_profile_login_screen) {
+class ProfileLoginScreen() : AppCompatActivity(R.layout.activity_profile_login_screen) {
 
     private val viewModel: ProfileLoginViewModel by viewModels()
 
@@ -45,7 +45,7 @@ class ProfileLoginScreen : AppCompatActivity(R.layout.activity_profile_login_scr
         observeData()
 
         btn_continue.setOnClickListener{
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, FindDoctors::class.java))
             finish()
         }
     }
@@ -64,18 +64,16 @@ class ProfileLoginScreen : AppCompatActivity(R.layout.activity_profile_login_scr
         viewModel.profile.observe(this) {
 
             Glide.with(this)
-                .load("${it.results.first().picture.large}")
+                .load("${it.photo}")
                 .placeholder(R.drawable.icon_acount)
                 .error(R.drawable.icon_error)
                 .circleCrop()
                 .into(profile_image)
 
-            name.setText(it.results.first().name.first + " " + it.results.first().name.last)
-            phone.setText(it.results.first().phone)
-            dateBirth.setText(it.results.first().dob.date)
-            localization.setText(it.results.first().location.city)
-
-            Toast.makeText(this, "Deu certo!", Toast.LENGTH_LONG).show()
+            name.setText(it.name)
+            phone.setText(it.phone)
+            dateBirth.setText(it.bday)
+            localization.setText(it.location)
 
         }
     }
