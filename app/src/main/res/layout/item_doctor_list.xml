@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_doctor_item"
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="5dp"
+        android:elevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgem_doctor"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="11dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/doctor" />
+
+        <ImageView
+            android:id="@+id/imgem_heart"
+            android:layout_width="19sp"
+            android:layout_height="17dp"
+            android:layout_marginStart="340dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/heart" />
+
+        <TextView
+            android:id="@+id/doctor_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="109dp"
+            android:layout_marginTop="16dp"
+            android:text="Dr. Pediatrician"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/doctor_speciality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="109dp"
+            android:layout_marginTop="44dp"
+            android:text="Specialist Cardiologist "
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/star1"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="109dp"
+            android:layout_marginTop="72dp"
+            android:backgroundTint="@color/green_olive"
+            android:src="@drawable/icon_star"
+            app:cardCornerRadius="16dp" />
+
+        <ImageView
+            android:id="@+id/star2"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="126dp"
+            android:layout_marginTop="72dp"
+            android:backgroundTint="@color/green_olive"
+            android:src="@drawable/icon_star"
+            app:cardCornerRadius="16dp" />
+
+        <ImageView
+            android:id="@+id/star3"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="143dp"
+            android:layout_marginTop="72dp"
+            android:backgroundTint="@color/green_olive"
+            android:src="@drawable/icon_star"
+            app:cardCornerRadius="16dp" />
+
+        <ImageView
+            android:id="@+id/star4"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="72dp"
+            android:backgroundTint="@color/green_olive"
+            android:src="@drawable/icon_star"
+            app:cardCornerRadius="16dp" />
+
+        <ImageView
+            android:id="@+id/star5"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="177dp"
+            android:layout_marginTop="72dp"
+            android:backgroundTint="@color/green_olive"
+            android:src="@drawable/icon_star"
+            app:cardCornerRadius="16dp" />
+
+        <TextView
+            android:id="@+id/text_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="226dp"
+            android:layout_marginTop="68dp"
+            android:paddingEnd="20dp"
+            android:text="2.8"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_views"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="275dp"
+            android:layout_marginTop="70dp"
+            android:text="(2821 views)"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
