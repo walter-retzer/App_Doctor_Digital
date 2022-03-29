@@ -11,34 +11,50 @@ import android.widget.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.wdretzer.doctordigital.R
-import com.wdretzer.doctordigital.extension.SessionManager
 import com.wdretzer.doctordigital.network.DataResult
+import com.wdretzer.doctordigital.util.GoogleLogInActivityContract
 import com.wdretzer.doctordigital.viewmodel.ApiViewModel
 
 
 class LoginScreen_01 : Fragment() {
 
+    private val googleSignInRequest = registerForActivityResult(
+        GoogleLogInActivityContract(),
+        ::onGoogleSigInResult
+    )
+
+    private val googleSignInOptions: GoogleSignInOptions
+    get() = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        .requestIdToken(getString(R.string.google_id))
+        .requestEmail()
+        .requestProfile()
+        .build()
+
     var token: String? = null
 
     private val viewModelLogin: ApiViewModel by viewModels()
 
-    private val progress_bar: ProgressBar?
+    private val progressBar: ProgressBar?
         get() = view?.findViewById(R.id.progress_bar)
 
-    private val btn_login: Button?
+    private val btnLogin: Button?
         get() = view?.findViewById(R.id.btn_login)
 
-    private val btn_forgot_password: TextView?
+    private val btnGoogle: Button?
+        get() = view?.findViewById(R.id.btn_google)
+
+    private val btnForgotPassword: TextView?
         get() = view?.findViewById(R.id.btn_forgot_password)
 
-    private val btn_new_account: TextView?
+    private val btnNewAccount: TextView?
         get() = view?.findViewById(R.id.btn_new_account)
 
-    private val text_email: EditText?
+    private val textEmail: EditText?
         get() = view?.findViewById(R.id.input_email)
 
-    private val text_password: EditText?
+    private val textPassword: EditText?
         get() = view?.findViewById(R.id.input_password)
 
     val dialogCorrect = PasswordCorrectDialogFragment()
@@ -57,29 +73,33 @@ class LoginScreen_01 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn_login?.setOnClickListener {
+        btnGoogle?.setOnClickListener {
+            googleSignInRequest.launch(googleSignInOptions)
+        }
+
+        btnLogin?.setOnClickListener {
             loadUser()
         }
 
-        btn_forgot_password?.setOnClickListener {
+        btnForgotPassword?.setOnClickListener {
             dialogForgot.show(
                 parentFragmentManager,
                 ForgotPasswordDialogFragment.TAG
             )
         }
 
-        btn_new_account?.setOnClickListener {
+        btnNewAccount?.setOnClickListener {
             sendToLogin02()
         }
     }
 
     private fun loadUser() {
-        viewModelLogin.login(text_email?.text.toString(), text_password?.text.toString())
+        viewModelLogin.login(textEmail?.text.toString(), textPassword?.text.toString())
             .observe(viewLifecycleOwner) {
                 when (it) {
                     is DataResult.Loading -> {
-                        progress_bar?.isVisible = it.isLoading
-                        btn_login?.isVisible = it.isLoading.not()
+                        progressBar?.isVisible = it.isLoading
+                        btnLogin?.isVisible = it.isLoading.not()
                     }
 
                     is DataResult.Error -> {
@@ -91,10 +111,6 @@ class LoginScreen_01 : Fragment() {
 
                     is DataResult.Success -> {
                         dialogCorrect.show(parentFragmentManager, PasswordCorrectDialogFragment.TAG)
-                        token = it.data.token
-
-                        SessionManager.saveSession(it.data.token)
-                        SessionManager.saveProfile(it.data.user)
 
                         Handler().postDelayed({
                             val intent = Intent(context, ProfileLoginScreen::class.java)
@@ -111,4 +127,10 @@ class LoginScreen_01 : Fragment() {
         findNavController().navigate(action)
     }
 
+    private fun onGoogleSigInResult(result: GoogleLogInActivityContract.Result?) {
+        if (result is GoogleLogInActivityContract.Result.Success){
+            val token = result.googleSignInAccount.idToken
+            Toast.makeText(context, "Meu token do Google é: $token !", Toast.LENGTH_LONG).show()
+        }
+    }
 }

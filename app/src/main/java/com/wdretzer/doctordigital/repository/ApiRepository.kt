@@ -2,6 +2,7 @@ package com.wdretzer.doctordigital.repository
 
 import com.wdretzer.doctordigital.data.Api
 import com.wdretzer.doctordigital.data.extension.updateStatus
+import com.wdretzer.doctordigital.extension.SessionManager
 import com.wdretzer.doctordigital.model.LoginRequest
 import com.wdretzer.doctordigital.model.LoginResponseUser
 import com.wdretzer.doctordigital.network.DataResult
@@ -19,6 +20,12 @@ class ApiRepository(
             emit(DataResult.Success(api.login(LoginRequest(email, password))))
         }
             .updateStatus()
+            .onEach {
+                if(it is DataResult.Success){
+                    SessionManager.saveSession(it.data.token)
+                    SessionManager.saveProfile(it.data.user)
+                }
+            }
             .flowOn(defaultDispatcher)
 
     companion object {

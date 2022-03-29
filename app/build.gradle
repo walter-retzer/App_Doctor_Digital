@@ -6,6 +6,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('D:\\Docs_Area\\AndroidStudio\\DoctorDigital\\debug-key.keystore')
+            storePassword '123456'
+            keyAlias 'debug'
+            keyPassword '123456'
+        }
+    }
     compileSdk 32
 
     defaultConfig {
@@ -22,6 +30,10 @@ android {
     }
 
     buildTypes {
+        debug{
+            signingConfig signingConfigs.debug
+            signingConfigs.debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -38,10 +50,12 @@ android {
 
 dependencies {
 
+    //Play Services Google
+    implementation 'com.google.android.gms:play-services-auth:20.1.0'
+
     //ROOM
     implementation "androidx.room:room-runtime:2.4.2"
     kapt ("androidx.room:room-compiler:2.4.2")
-
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.13.0'
@@ -54,6 +68,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.activity:activity-ktx:1.4.0'
 
+    //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
