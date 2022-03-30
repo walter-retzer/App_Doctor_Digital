@@ -24,7 +24,7 @@
     <string name="personal_information">Personal information</string>
     <string name="find_doctors">Find Doctors</string>
     <string name="dentist">Dentist</string>
-    <string name="google_id">116642782486-63lrtojvujvr88a8mujdb06gu33368om.apps.googleusercontent.com</string>
-    <string name="facebook_app_id">661476031754836</string>
-    <string name="facebook_client_token">2be9afc2fe79e59a75cbf1d31c93e8e6</string>
+    <string name="google_id">123456789</string>
+    <string name="facebook_app_id">123456789</string>
+    <string name="facebook_client_token">123456789</string>
 </resources>
