@@ -1,8 +1,11 @@
 package com.wdretzer.doctordigital.ui
 
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +14,17 @@ import android.widget.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.wdretzer.doctordigital.R
 import com.wdretzer.doctordigital.network.DataResult
 import com.wdretzer.doctordigital.util.GoogleLogInActivityContract
 import com.wdretzer.doctordigital.viewmodel.ApiViewModel
+import java.security.MessageDigest
 
 
 class LoginScreen_01 : Fragment() {
@@ -45,6 +54,9 @@ class LoginScreen_01 : Fragment() {
     private val btnGoogle: Button?
         get() = view?.findViewById(R.id.btn_google)
 
+    private val btnFacebook: Button?
+        get() = view?.findViewById(R.id.btn_facebook)
+
     private val btnForgotPassword: TextView?
         get() = view?.findViewById(R.id.btn_forgot_password)
 
@@ -61,6 +73,9 @@ class LoginScreen_01 : Fragment() {
     val dialogError = PasswordIncorrectDialogFragment()
     val dialogForgot = ForgotPasswordDialogFragment()
 
+    private val loginManager = LoginManager.getInstance()
+    private val callbackManager = CallbackManager.Factory.create()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -72,6 +87,10 @@ class LoginScreen_01 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        btnFacebook?.setOnClickListener {
+            loginFacebbok()
+        }
 
         btnGoogle?.setOnClickListener {
             googleSignInRequest.launch(googleSignInOptions)
@@ -91,6 +110,25 @@ class LoginScreen_01 : Fragment() {
         btnNewAccount?.setOnClickListener {
             sendToLogin02()
         }
+    }
+
+    private fun loginFacebbok() {
+        loginManager.logInWithReadPermissions(this, arrayListOf("public_profile"))
+        loginManager.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+            override fun onSuccess(result: LoginResult) {
+                Toast.makeText(requireContext(), "Esse é o nosso Token: ${result.accessToken.token}!", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onCancel() {
+                Toast.makeText(requireContext(), "Cancelou!", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onError(error: FacebookException?) {
+                Toast.makeText(requireContext(), "Errou!", Toast.LENGTH_LONG).show()
+            }
+
+
+        })
     }
 
     private fun loadUser() {
@@ -132,5 +170,10 @@ class LoginScreen_01 : Fragment() {
             val token = result.googleSignInAccount.idToken
             Toast.makeText(context, "Meu token do Google é: $token !", Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/white"
     tools:context=".ui.LoginScreen_01">
 
     <ProgressBar
@@ -12,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        android:elevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/msg_welcome"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/cinza"
         android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,6 +62,7 @@
         android:drawableStart="@drawable/icon_google"
         android:text="@string/google"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/you_can_sea" />
 
@@ -75,51 +76,68 @@
         android:drawableStart="@drawable/icon_facebook"
         android:text="@string/facebook"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/you_can_sea" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_email"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/TextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="37dp"
         android:layout_marginRight="20dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
         android:hint="Email"
-        app:endIconDrawable="@drawable/icon_check"
-        app:endIconMode="custom"
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/green_olive"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_google">
+        app:layout_constraintTop_toBottomOf="@+id/btn_google"
+        app:startIconDrawable="@drawable/icon_email"
+        app:startIconTint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_password"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/TextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="18dp"
         android:layout_marginRight="20dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
         android:hint="Password"
+        android:imeOptions="actionDone"
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/green_olive"
         app:endIconMode="password_toggle"
+        app:endIconTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_email">
+        app:layout_constraintTop_toBottomOf="@+id/login_email"
+        app:startIconDrawable="@drawable/icon_cadeado"
+        app:startIconTint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="numberPassword" />
+            android:inputType="numberPassword"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

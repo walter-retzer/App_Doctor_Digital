@@ -51,6 +51,7 @@ class FindDoctors() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find_doctors)
 
+
         dbRoom = DataBaseFactory.getDataBAse()
 
 

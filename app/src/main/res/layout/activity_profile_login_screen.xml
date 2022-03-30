@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.ProfileLoginScreen">
-
 
     <ImageView
         android:id="@+id/view_top"
         android:layout_width="match_parent"
-        android:layout_height="315dp"
+        android:layout_height="295dp"
         android:src="@drawable/background_top_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,8 +60,8 @@
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_marginBottom="30dp"
-            android:src="@drawable/icon_acount"
             android:scaleType="centerCrop"
+            android:src="@drawable/icon_acount"
             app:layout_constraintBottom_toBottomOf="@id/view_top"
             app:layout_constraintLeft_toLeftOf="@id/view_top"
             app:layout_constraintRight_toRightOf="@id/view_top" />
@@ -74,8 +74,8 @@
         android:layout_height="36dp"
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="13dp"
-        android:src="@drawable/icone_camera"
         android:elevation="2dp"
+        android:src="@drawable/icone_camera"
         app:layout_constraintBottom_toBottomOf="@id/card_profile_imagem"
         app:layout_constraintStart_toStartOf="@id/card_profile_imagem" />
 
@@ -106,7 +106,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/profile_name"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/TextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
@@ -115,6 +115,7 @@
         android:background="@color/white"
         android:hint="Name"
         android:textColorHint="@color/cinza_chumbo"
+        app:boxStrokeColor="@color/green_olive"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_personal_information">
@@ -123,13 +124,14 @@
             android:id="@+id/input_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/profile_number"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/TextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
@@ -138,6 +140,7 @@
         android:background="@color/white"
         android:hint="Contact Number"
         android:textColorHint="@color/cinza_chumbo"
+        app:boxStrokeColor="@color/green_olive"
         app:endIconDrawable="@drawable/icon_edit"
         app:endIconMode="custom"
         app:layout_constraintEnd_toEndOf="parent"
@@ -148,13 +151,14 @@
             android:id="@+id/input_phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/profile_birthday"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/TextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
@@ -163,6 +167,7 @@
         android:background="@color/white"
         android:hint="Date of Birth"
         android:textColorHint="@color/cinza_chumbo"
+        app:boxStrokeColor="@color/green_olive"
         app:endIconDrawable="@drawable/icon_edit"
         app:endIconMode="custom"
         app:layout_constraintEnd_toEndOf="parent"
@@ -173,13 +178,14 @@
             android:id="@+id/input_day_birth"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="date" />
+            android:inputType="date"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/profile_localization"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/TextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
@@ -188,6 +194,7 @@
         android:background="@color/white"
         android:hint="Add Details"
         android:textColorHint="@color/cinza_chumbo"
+        app:boxStrokeColor="@color/green_olive"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_birthday">
@@ -196,7 +203,8 @@
             android:id="@+id/input_localization"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textPostalAddress" />
+            android:inputType="textPostalAddress"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
