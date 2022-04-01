@@ -1,11 +1,8 @@
 package com.wdretzer.doctordigital.ui
 
 import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,32 +11,26 @@ import android.widget.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.wdretzer.doctordigital.R
 import com.wdretzer.doctordigital.network.DataResult
 import com.wdretzer.doctordigital.util.GoogleLogInActivityContract
 import com.wdretzer.doctordigital.viewmodel.ApiViewModel
-import java.security.MessageDigest
 
 
 class LoginScreen_01 : Fragment() {
 
     private val googleSignInRequest = registerForActivityResult(
         GoogleLogInActivityContract(),
-        ::onGoogleSigInResult
+        ::loginGoogle
     )
 
     private val googleSignInOptions: GoogleSignInOptions
-    get() = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestIdToken(getString(R.string.google_id))
-        .requestEmail()
-        .requestProfile()
-        .build()
+        get() = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.google_id))
+            .requestEmail()
+            .requestProfile()
+            .build()
 
     var token: String? = null
 
@@ -73,9 +64,6 @@ class LoginScreen_01 : Fragment() {
     val dialogError = PasswordIncorrectDialogFragment()
     val dialogForgot = ForgotPasswordDialogFragment()
 
-    private val loginManager = LoginManager.getInstance()
-    private val callbackManager = CallbackManager.Factory.create()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -88,17 +76,13 @@ class LoginScreen_01 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnFacebook?.setOnClickListener {
-            loginFacebbok()
-        }
+        btnLogin?.setOnClickListener { loginNormal() }
 
-        btnGoogle?.setOnClickListener {
-            googleSignInRequest.launch(googleSignInOptions)
-        }
+        btnFacebook?.setOnClickListener { loginFacebook() }
 
-        btnLogin?.setOnClickListener {
-            loadUser()
-        }
+        btnGoogle?.setOnClickListener { googleSignInRequest.launch(googleSignInOptions) }
+
+        btnNewAccount?.setOnClickListener { sendToLogin02() }
 
         btnForgotPassword?.setOnClickListener {
             dialogForgot.show(
@@ -107,32 +91,34 @@ class LoginScreen_01 : Fragment() {
             )
         }
 
-        btnNewAccount?.setOnClickListener {
-            sendToLogin02()
+        loadUser()
+        observeSocialLogin()
+    }
+
+    private fun observeSocialLogin() {
+        viewModelLogin.socialLoginError.observe(viewLifecycleOwner){
+            Toast.makeText(context, "Pos deu erro ao tentar utilizar o $it!!", Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun loginFacebbok() {
-        loginManager.logInWithReadPermissions(this, arrayListOf("public_profile"))
-        loginManager.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-            override fun onSuccess(result: LoginResult) {
-                Toast.makeText(requireContext(), "Esse é o nosso Token: ${result.accessToken.token}!", Toast.LENGTH_LONG).show()
-            }
+    private fun loginNormal() {
+        viewModelLogin.login(textEmail?.text.toString(), textPassword?.text.toString())
+    }
 
-            override fun onCancel() {
-                Toast.makeText(requireContext(), "Cancelou!", Toast.LENGTH_LONG).show()
-            }
+    private fun loginGoogle(result: GoogleLogInActivityContract.Result) {
+        viewModelLogin.loginGoogle(result)
+    }
 
-            override fun onError(error: FacebookException?) {
-                Toast.makeText(requireContext(), "Errou!", Toast.LENGTH_LONG).show()
-            }
-
-
-        })
+    private fun loginFacebook() {
+        viewModelLogin.loginManager.logInWithReadPermissions(
+            this,
+            viewModelLogin.callbackManager,
+            permissions
+        )
     }
 
     private fun loadUser() {
-        viewModelLogin.login(textEmail?.text.toString(), textPassword?.text.toString())
+        viewModelLogin.apiLoginResult
             .observe(viewLifecycleOwner) {
                 when (it) {
                     is DataResult.Loading -> {
@@ -144,7 +130,8 @@ class LoginScreen_01 : Fragment() {
                         dialogError.show(parentFragmentManager, PasswordIncorrectDialogFragment.TAG)
                     }
                     is DataResult.Empty -> {
-                        Toast.makeText(context, "Erro ao Receber os Dados!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "Erro ao Receber os Dados!", Toast.LENGTH_LONG)
+                            .show()
                     }
 
                     is DataResult.Success -> {
@@ -165,15 +152,8 @@ class LoginScreen_01 : Fragment() {
         findNavController().navigate(action)
     }
 
-    private fun onGoogleSigInResult(result: GoogleLogInActivityContract.Result?) {
-        if (result is GoogleLogInActivityContract.Result.Success){
-            val token = result.googleSignInAccount.idToken
-            Toast.makeText(context, "Meu token do Google é: $token !", Toast.LENGTH_LONG).show()
-        }
+    companion object {
+        private val permissions = listOf("public_profile", "email")
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager.onActivityResult(requestCode, resultCode, data)
-        super.onActivityResult(requestCode, resultCode, data)
-    }
 }

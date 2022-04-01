@@ -9,7 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green_olive">#0EBE7F</color>
     <color name="green">#43a047</color>
+    <color name="green_dark">#388e3c</color>
     <color name="cinza">#677294</color>
+    <color name="cinza_l">#fafafa</color>
     <color name="cinza_light">#E5E5E5</color>
     <color name="cinza_chumbo">#677294</color>
     <color name="light_green">#e8f5e9</color>

@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imgem_doctor_fav"
+            android:id="@+id/img_find_doctors"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="20dp"
@@ -27,7 +27,7 @@
             android:src="@drawable/doctor_img" />
 
         <ImageButton
-            android:id="@+id/favorito_img_fav"
+            android:id="@+id/btn_fav_find_doctors"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="280dp"
@@ -55,7 +55,7 @@
             android:layout_marginStart="17dp"
             android:layout_marginTop="142dp"
             android:padding="3dp"
-            android:text="10:00"
+            android:text="08:00"
             android:textColor="@color/black"
             android:textSize="13sp"
             android:textStyle="bold" />
@@ -73,20 +73,18 @@
             android:textSize="13sp" />
 
         <TextView
-            android:id="@+id/doctor_name_fav"
+            android:id="@+id/name_find_doctors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="126dp"
             android:layout_marginTop="22dp"
-            android:layout_marginBottom="14dp"
-            android:padding="3dp"
             android:text="Dr. Shruti Kedia"
             android:textColor="@color/black"
             android:textSize="19sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/doctor_speciality_fav"
+            android:id="@+id/specialization_find_doctors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="126dp"
@@ -97,7 +95,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/doctor_expirience_fav"
+            android:id="@+id/experience_find_doctors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="126dp"
@@ -117,7 +115,7 @@
             app:cardCornerRadius="16dp" />
 
         <TextView
-            android:id="@+id/porcentagem_fav"
+            android:id="@+id/classification_find_doctors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="143dp"
@@ -138,7 +136,7 @@
             app:cardCornerRadius="16dp" />
 
         <TextView
-            android:id="@+id/pacient_stories_fav"
+            android:id="@+id/pacient_stories_find_doctors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="197dp"
@@ -147,8 +145,9 @@
             android:textColor="@color/black"
             android:textSize="11sp" />
 
+
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/text_schedule"
+            android:id="@+id/btn_book_now"
             android:layout_width="112dp"
             android:layout_height="34dp"
             android:layout_marginStart="196dp"

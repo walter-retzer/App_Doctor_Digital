@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cinza_l"
-    tools:context=".ui.FindDoctors">
+    tools:context=".ui.FavoriteActivity">
 
     <ImageView
         android:layout_width="150dp"
@@ -34,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/background_toolbar"
-        app:title="Find Doctors"
+        app:title="Favourite Doctors"
         app:titleTextColor="@color/black" />
 
     <androidx.appcompat.widget.SearchView
@@ -52,19 +52,6 @@
         app:searchHintIcon="@drawable/icon_search"
         app:searchIcon="@drawable/icon_search" />
 
-    <TextView
-        android:id="@+id/list_doctors"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Lista de Doctors"
-        android:textColor="@color/black"
-        android:textSize="19sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide_start"
         android:layout_width="0dp"
@@ -80,21 +67,21 @@
         app:layout_constraintGuide_end="20dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_doctors"
+        android:id="@+id/recycler_doctors2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/menu_find_doctors"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search"
         tools:itemCount="10"
-        tools:listitem="@layout/item_find_doctors" />
+        tools:listitem="@layout/item_doctor" />
 
     <FrameLayout
-        android:id="@+id/loading"
+        android:id="@+id/loading_favourite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -110,48 +97,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </FrameLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_fav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/white"
-        android:src="@drawable/icon_fav"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/white"
-        android:src="@drawable/icon_home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_agenda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/white"
-        android:src="@drawable/icon_book"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/menu_find_doctors"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/background_find_doctors_menu"
-        android:elevation="3dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

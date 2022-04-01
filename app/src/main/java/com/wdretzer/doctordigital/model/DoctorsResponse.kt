@@ -16,7 +16,8 @@ data class DoctorsList(
     val classification: Double,
     val experience: Int,
     val patientStories: Int,
-    val views: Int
+    val views: Int,
+    val isFavourite: Boolean = false
 ){
     constructor(doctorEntity: DoctorEntity) : this(
         doctorEntity.apiId,
@@ -27,6 +28,16 @@ data class DoctorsList(
         doctorEntity.experience,
         doctorEntity.patientStories,
         doctorEntity.views,
-
     )
 }
+
+fun DoctorsList.toDoctorEntity() = DoctorEntity(
+    apiId = id,
+    name = name,
+    photo = photo,
+    specialization = specialization,
+    experience = experience,
+    patientStories = patientStories,
+    views = views,
+    classification = classification.toInt()
+)

@@ -12,6 +12,9 @@ class TokenInterceptor(): Interceptor {
         if (request.url.pathSegments.contains("login")){
            return chain.proceed(request)
         }
+        if (request.url.pathSegments.contains("social-login")){
+            return chain.proceed(request)
+        }
 
         val newRequest = request
             .newBuilder()

@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    android:layout_marginBottom="10dp">
+    android:layout_marginBottom="10dp"
+    android:background="@android:color/transparent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview_doctor_item"
         android:layout_width="match_parent"
         android:layout_height="104dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:backgroundTint="@color/white"
-        app:cardCornerRadius="5dp"
         android:elevation="2dp"
+        app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -121,13 +121,15 @@
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/favorito_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="300dp"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="300dp"
-            android:padding="10dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/favorito"
+            android:scaleType="fitXY"
             android:src="@drawable/icon_heart" />
 
     </androidx.cardview.widget.CardView>

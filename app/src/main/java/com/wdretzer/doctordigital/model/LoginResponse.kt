@@ -10,3 +10,5 @@ data class LoginUser(
     val bday: String,
     val location: String
 )
+
+data class SocialLogin(val type: String, val token: String)

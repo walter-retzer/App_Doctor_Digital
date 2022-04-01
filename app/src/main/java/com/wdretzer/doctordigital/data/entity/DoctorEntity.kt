@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName =  "doctor")
 data class DoctorEntity(
     @PrimaryKey(autoGenerate = true)
-    val id :Int = 0,
+    val id:Int = 0,
     @ColumnInfo
     val name: String,
     @ColumnInfo
@@ -15,7 +15,7 @@ data class DoctorEntity(
     @ColumnInfo
     val specialization: String = "",
     @ColumnInfo
-    val classification: Int = 0,
+    val classification: Int,
     @ColumnInfo
     val experience: Int = 1,
     @ColumnInfo(name = "patient_stories" )
@@ -24,4 +24,5 @@ data class DoctorEntity(
     val views: Int = 100,
     @ColumnInfo(name = "api_id")
     val apiId: String = "",
-)
+
+    )

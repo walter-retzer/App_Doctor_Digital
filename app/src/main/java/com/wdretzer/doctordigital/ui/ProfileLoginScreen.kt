@@ -41,7 +41,6 @@ class ProfileLoginScreen() : AppCompatActivity(R.layout.activity_profile_login_s
         super.onCreate(savedInstanceState)
 
         viewModel.loadProfile()
-
         observeData()
 
         btn_continue.setOnClickListener{

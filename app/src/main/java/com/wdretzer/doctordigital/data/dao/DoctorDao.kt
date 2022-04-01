@@ -28,4 +28,10 @@ interface DoctorDao {
 
     @Query("SELECT * FROM doctor WHERE api_id = :apiId")
     fun retrieveByApiId(apiId: String) : DoctorEntity
+
+    @Query("SELECT COUNT(api_id) FROM doctor WHERE api_id = :apiId")
+    fun countApiId(apiId: String) : Int
+
+    @Query("DELETE FROM doctor WHERE api_id = :apiId")
+    fun deleteByApiId(apiId: String)
 }

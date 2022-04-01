@@ -1,145 +1,118 @@
 package com.wdretzer.doctordigital.ui
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.widget.FrameLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.wdretzer.doctordigital.R
+import com.wdretzer.doctordigital.R.color.green_olive
+import com.wdretzer.doctordigital.R.color.white
 import com.wdretzer.doctordigital.adapter.FindDoctorsAdapter
 import com.wdretzer.doctordigital.data.DataBaseFactory
-import com.wdretzer.doctordigital.data.entity.DoctorEntity
-import com.wdretzer.doctordigital.data.entity.DoctorEntry.COLUMN_NAME_API_ID
-import com.wdretzer.doctordigital.data.entity.DoctorEntry.COLUMN_NAME_CLASSIFICATION
-import com.wdretzer.doctordigital.data.entity.DoctorEntry.COLUMN_NAME_EXPERIENCE
-import com.wdretzer.doctordigital.data.entity.DoctorEntry.COLUMN_NAME_NAME
-import com.wdretzer.doctordigital.data.entity.DoctorEntry.COLUMN_NAME_PATIENT_STORIES
-import com.wdretzer.doctordigital.data.entity.DoctorEntry.COLUMN_NAME_PHOTO
-import com.wdretzer.doctordigital.data.entity.DoctorEntry.COLUMN_NAME_SPECIALIZATION
-import com.wdretzer.doctordigital.data.entity.DoctorEntry.COLUMN_NAME_VIEWS
-import com.wdretzer.doctordigital.data.local.AppDataBase
-import com.wdretzer.doctordigital.data.local.DbDoctorHelper
-import com.wdretzer.doctordigital.data.local.DbHelper
+import com.wdretzer.doctordigital.model.DoctorsList
+import com.wdretzer.doctordigital.model.DoctorsResponse
+import com.wdretzer.doctordigital.network.DataResult
 import com.wdretzer.doctordigital.viewmodel.DoctorsViewModel
+import kotlinx.coroutines.delay as delay1
 
 class FindDoctors() : AppCompatActivity() {
-
-    private val viewModelDoctors: DoctorsViewModel by viewModels()
     var page = 1
     var limitPage = 1
-    private val adapter = FindDoctorsAdapter()
+
+    private val viewModelDoctors: DoctorsViewModel by viewModels()
+
+    private val adapter = FindDoctorsAdapter(::saveFavourite)
+
     private val recycler: RecyclerView
         get() = findViewById(R.id.recycler_doctors)
+
     private val loading: FrameLayout
         get() = findViewById(R.id.loading)
-    private val listaDoctors: TextView?
-        get() = findViewById(R.id.list_doctors)
-    private val btnSave: FloatingActionButton
-    get() = findViewById(R.id.btn_save)
 
+    private val btnSendToFavorities: FloatingActionButton
+        get() = findViewById(R.id.btn_fav)
 
-    private lateinit var dbDoctorsHelper: DbDoctorHelper
-    private lateinit var dbRoom: AppDataBase
+    private val btnFindDoctors: FloatingActionButton
+        get() = findViewById(R.id.btn_agenda)
 
+    private val btnReturnMenu: FloatingActionButton
+        get() = findViewById(R.id.btn_menu)
+
+    private val btnReturn: androidx.appcompat.widget.Toolbar
+        get() = findViewById(R.id.toolbar)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find_doctors)
 
-
-        dbRoom = DataBaseFactory.getDataBAse()
-
-
-        dbDoctorsHelper = DbDoctorHelper(this)
-
-        btnSave.setOnClickListener{
-            save()
-        }
-
         recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recycler.adapter = adapter
+
         setScrollView()
+        getList(page)
 
-        observarApi()
-        updateList(1)
-    }
-
-    private fun save() {
-
-//        val myDoctor = DoctorEntity(
-//            name = "Dr. Abobrinha",
-//            photo = "Foto",
-//            classification = 99
-//        )
-//
-//        dbRoom.doctorDao().insert(DoctorEntity(
-//            id = 3,
-//            name = "Dr. Abobrinha2",
-//            photo = "url"
-//        ))
-
-        dbRoom.doctorDao().insertAll(MutableList(5){
-            DoctorEntity(
-                name = "Doctor House ${it+1}",
-                photo = "photo"
-            )
-        })
-
-        val doctors = dbRoom.doctorDao().listAll()
-        println(doctors)
-
-
-
-        val id = dbDoctorsHelper.insert {
-            put(COLUMN_NAME_NAME, "Abacate")
-            put(COLUMN_NAME_PHOTO, "Foto")
-            put(COLUMN_NAME_SPECIALIZATION, "")
-            put(COLUMN_NAME_CLASSIFICATION, "")
-            put(COLUMN_NAME_EXPERIENCE, "")
-            put(COLUMN_NAME_PATIENT_STORIES, "")
-            put(COLUMN_NAME_VIEWS, "")
-            put(COLUMN_NAME_API_ID, "")
-        }
-        println(id)
-        listWithAbacate()
-        deleteDoctor(id)
-    }
-
-    private fun deleteDoctor(id: Long) {
-    dbDoctorsHelper.delete(id)
-    }
-
-    private fun listWithAbacate() {
-       dbDoctorsHelper.listAllWithAbacate()
-    }
-
-    private fun observarApi() {
-
-        viewModelDoctors.loading.observe(this) {
-            loading.isVisible = it
+        btnSendToFavorities.setOnClickListener {
+            startActivity(Intent(this, FavoriteActivity::class.java))
+            finish()
         }
 
-        viewModelDoctors.error.observe(this) {
-            if (it) {
-                listaDoctors?.text = "Falha -> ${it.toString()}"
-                Toast.makeText(this, "Falha!!", Toast.LENGTH_LONG).show()
+        btnReturn.setOnClickListener {
+            startActivity(Intent(this, ProfileLoginScreen::class.java))
+            finish()
+        }
+
+        btnReturnMenu.setOnClickListener {
+            startActivity(Intent(this, ProfileLoginScreen::class.java))
+            finish()
+        }
+    }
+
+
+    private fun saveFavourite(item: DoctorsList) {
+        viewModelDoctors.addOrRemoveFavourite(item).observe(this) {
+            if (it is DataResult.Success) {
+                adapter.updateItem(it.data)
             }
         }
-
-        viewModelDoctors.success.observe(this) {
-            adapter.updateList(it.doctors)
-            limitPage = it.limitPage
-        }
     }
 
-    // Função para passar os parâmetros do valor da página da API:
-    private fun updateList(pageItem: Int) {
-        viewModelDoctors.listDoctors(pageItem)
+
+    private fun getList(page: Int) {
+        viewModelDoctors.listDoctors(page).observe(this, ::observeData)
+    }
+
+
+    private fun observeData(result: DataResult<DoctorsResponse>) {
+        when (result) {
+            is DataResult.Loading -> {
+                loading.isVisible = result.isLoading
+            }
+
+            is DataResult.Success -> {
+                val lista = result.data.doctors
+                adapter.updateList(lista)
+                limitPage = result.data.limitPage
+            }
+
+            is DataResult.Error -> {
+                println(result.error)
+                Toast.makeText(this, "Error!", Toast.LENGTH_LONG).show()
+            }
+
+            is DataResult.Empty -> {
+                Toast.makeText(this, "Result is Empty!", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     private fun setScrollView() {
@@ -155,7 +128,7 @@ class FindDoctors() : AppCompatActivity() {
                     val lastItem = (lastItemVisible + 5 >= totalCountItens)
 
                     if ((totalCountItens > 0 && lastItem) && (page < limitPage && loading.isVisible.not())) {
-                        updateList(++page)
+                        getList(++page)
                     }
                 }
             })

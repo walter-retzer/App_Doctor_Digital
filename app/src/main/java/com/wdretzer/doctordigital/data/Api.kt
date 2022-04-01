@@ -7,6 +7,9 @@ interface Api {
     @POST("login")
     suspend fun login(@Body login: LoginRequest): LoginResponseUser
 
+    @POST("social-login")
+    suspend fun socialLogin(@Body login: SocialLogin): LoginResponseUser
+
     @GET("user/profile")
     suspend fun profile(
     ): LoginUser
